@@ -4,12 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Product")
-public class ProductEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_product")
-    private int id ;
+public class ProductEntity extends BaseEntity{
 
     @Column(name = "kode_barang", length = 50)
     private String kodeBarang;
@@ -20,15 +15,8 @@ public class ProductEntity {
     @Column(name = "jumlah")
     private int jumlah;
 
+    @Column(name = "harga", nullable = false)
     private int harga;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getKodeBarang() {
         return kodeBarang;

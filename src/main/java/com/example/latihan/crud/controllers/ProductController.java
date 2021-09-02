@@ -2,6 +2,7 @@ package com.example.latihan.crud.controllers;
 
 import com.example.latihan.crud.entities.ProductEntity;
 import com.example.latihan.crud.repositories.ProductRepositories;
+import com.example.latihan.crud.service.ProductService;
 import com.example.latihan.crud.util.CommonResponse;
 import com.example.latihan.crud.util.CommonResponseGenerator;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "product")
@@ -18,7 +20,7 @@ public class ProductController {
     Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
-    ProductRepositories productRepositories;
+    ProductService productService;
 
     @Autowired
     CommonResponseGenerator comgen;
@@ -27,7 +29,7 @@ public class ProductController {
     CommonResponse<ProductEntity> addProduct(@RequestBody ProductEntity productEntity) throws Exception{
 
         try {
-            ProductEntity product = productRepositories.save(productEntity);
+            ProductEntity product = productService.addProduct(productEntity);
             return comgen.successResponse(product, "Success Add Product");
 
         } catch ( Exception e) {
@@ -41,7 +43,7 @@ public class ProductController {
     CommonResponse<List<ProductEntity>> getAllProduct() {
 
         try {
-            List<ProductEntity> productEntityList = productRepositories.findAll();
+            List<ProductEntity> productEntityList = productService.getAllProduct();
             return comgen.successResponse(productEntityList, "Success get All Product");
 
         } catch (Exception e) {
@@ -49,6 +51,18 @@ public class ProductController {
             return comgen.failedResponse(e.getMessage());
         }
 
+    }
+
+    @GetMapping(value = "id")
+    CommonResponse<ProductEntity> getProductById(@RequestParam Long id) {
+        try {
+            ProductEntity productEntityList = productService.getById(id);
+            return comgen.successResponse(productEntityList, "Success get Product By Id "+id);
+
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return comgen.failedResponse(e.getMessage());
+        }
     }
 
 
