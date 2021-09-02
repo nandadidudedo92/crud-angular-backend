@@ -27,8 +27,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public ProductEntity getById(Long id) throws Exception {
         Optional<ProductEntity> productEntityOptional = productRepositories.findById(id);
-        return null;
+        return productEntityOptional.get();
     }
 
-    //asdasdasd
 }
