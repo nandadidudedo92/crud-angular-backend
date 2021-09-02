@@ -3,8 +3,11 @@ package com.example.latihan.crud.entities;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
-public class BaseEntity {
+@MappedSuperclass
+public class BaseEntity  implements Serializable {
 
     private static final long serialVersionUID = 2025317384448593285L;
 

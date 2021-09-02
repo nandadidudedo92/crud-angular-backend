@@ -3,10 +3,12 @@ package com.example.latihan.crud.service;
 import com.example.latihan.crud.entities.ProductEntity;
 import com.example.latihan.crud.repositories.ProductRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class ProductServiceImpl implements ProductService{
 
     @Autowired
