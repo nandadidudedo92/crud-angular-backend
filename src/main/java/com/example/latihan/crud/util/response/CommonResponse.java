@@ -1,4 +1,4 @@
-package com.example.latihan.crud.util;
+package com.example.latihan.crud.util.response;
 
 public class CommonResponse<T> {
 

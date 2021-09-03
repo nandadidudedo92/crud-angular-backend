@@ -1,6 +1,6 @@
 package com.example.latihan.crud.service;
 
-import com.example.latihan.crud.entities.ProductEntity;
+import com.example.latihan.crud.entities.master.ProductEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

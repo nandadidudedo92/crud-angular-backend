@@ -1,6 +1,6 @@
 package com.example.latihan.crud.repositories;
 
-import com.example.latihan.crud.entities.ProductEntity;
+import com.example.latihan.crud.entities.master.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

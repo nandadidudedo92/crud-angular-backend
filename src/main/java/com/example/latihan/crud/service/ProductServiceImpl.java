@@ -1,6 +1,6 @@
 package com.example.latihan.crud.service;
 
-import com.example.latihan.crud.entities.ProductEntity;
+import com.example.latihan.crud.entities.master.ProductEntity;
 import com.example.latihan.crud.repositories.ProductRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ public class ProductServiceImpl implements ProductService{
     ProductRepositories productRepositories;
 
     @Override
-    public ProductEntity addProduct(ProductEntity productEntity) throws Exception {
+    public ProductEntity addProduct(ProductEntity productEntity) {
         return productRepositories.save(productEntity) ;
     }
 

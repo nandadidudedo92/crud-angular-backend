@@ -1,12 +1,14 @@
-package com.example.latihan.crud.entities;
+package com.example.latihan.crud.entities.master;
+
+import com.example.latihan.crud.util.model.AuditableBase;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Product")
-public class ProductEntity extends BaseEntity{
+@Table(name = "product")
+public class ProductEntity extends AuditableBase {
 
-    @Column(name = "kode_barang", length = 50)
+    @Column(name = "kode_barang", length = 50,  unique=true)
     private String kodeBarang;
 
     @Column(name = "nama_barang", length = 50)

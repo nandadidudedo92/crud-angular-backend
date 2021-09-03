@@ -1,17 +1,15 @@
 package com.example.latihan.crud.controllers;
 
-import com.example.latihan.crud.entities.ProductEntity;
-import com.example.latihan.crud.repositories.ProductRepositories;
+import com.example.latihan.crud.entities.master.ProductEntity;
 import com.example.latihan.crud.service.ProductService;
-import com.example.latihan.crud.util.CommonResponse;
-import com.example.latihan.crud.util.CommonResponseGenerator;
+import com.example.latihan.crud.util.response.CommonResponse;
+import com.example.latihan.crud.util.response.CommonResponseGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "product")
@@ -34,7 +32,7 @@ public class ProductController {
 
         } catch ( Exception e) {
             logger.error(e.getMessage());
-            return  comgen.failedResponse(e.getMessage());
+            return  comgen.failedResponse("Internal Server Error");
         }
 
     }
