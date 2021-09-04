@@ -32,7 +32,7 @@ public class ProductController {
 
         } catch ( Exception e) {
             logger.error(e.getMessage());
-            return  comgen.failedResponse("Internal Server Error");
+            return  comgen.failedResponse("Cek Apakah kode barang ada yang sama");
         }
 
     }
