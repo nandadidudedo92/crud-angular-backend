@@ -15,7 +15,6 @@ public class UserProfileEntity extends AuditableBase  {
 
     private String email;
 
-    private RoleEntity role;
 
     public String getFullName() {
         return fullName;
@@ -33,11 +32,4 @@ public class UserProfileEntity extends AuditableBase  {
         this.email = email;
     }
 
-    public RoleEntity getRole() {
-        return role;
-    }
-
-    public void setRole(RoleEntity role) {
-        this.role = role;
-    }
 }

@@ -1,0 +1,60 @@
+package com.example.latihan.crud.service;
+
+import com.example.latihan.crud.entities.identity.RoleEntity;
+import com.example.latihan.crud.entities.identity.UserEntity;
+import com.example.latihan.crud.entities.identity.UserProfileEntity;
+import com.example.latihan.crud.entities.master.ProductEntity;
+import com.example.latihan.crud.repositories.ProductRepositories;
+import com.example.latihan.crud.repositories.RoleRepositories;
+import com.example.latihan.crud.repositories.UserProfileRepositories;
+import com.example.latihan.crud.repositories.UserRepositories;
+import com.example.latihan.crud.wrappers.UserWrapper;
+import org.apache.catalina.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
+
+@Component
+public class UserServiceImpl implements UserService{
+
+    @Autowired
+    UserRepositories userRepositories;
+
+    @Autowired
+    RoleRepositories roleRepositories;
+
+    @Autowired
+    UserProfileRepositories userProfileRepositories;
+
+    @Transactional
+    @Override
+    public UserEntity addUser(UserWrapper userWrapper) throws Exception {
+
+        UserEntity userEntity = new UserEntity();
+        UserProfileEntity userProfileEntity = new UserProfileEntity();
+        Optional<RoleEntity> roleEntity = roleRepositories.findById(userWrapper.getRoleId());
+        userProfileEntity.setFullName(userWrapper.getFullName());
+        userProfileEntity.setEmail(userWrapper.getEmail());
+        userProfileRepositories.save(userProfileEntity);
+        userEntity.setUsername(userWrapper.getUsername());
+        userEntity.setPassword(userWrapper.getPassword());
+        userEntity.setUserProfile(userProfileEntity);
+        userEntity.setRole(roleEntity.get());
+        return userRepositories.save(userEntity);
+    }
+
+    @Override
+    public List<UserEntity> getAllUser() throws Exception {
+        return userRepositories.findAll();
+    }
+
+    @Override
+    public UserEntity getById(Long id) throws Exception {
+        Optional<UserEntity> userEntityOptional = userRepositories.findById(id);
+        return userEntityOptional.get();
+    }
+
+}

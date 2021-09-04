@@ -2,9 +2,7 @@ package com.example.latihan.crud.entities.identity;
 
 import com.example.latihan.crud.util.model.AuditableBase;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "sys_user")
@@ -19,8 +17,13 @@ public class UserEntity extends AuditableBase {
 
     private boolean active;
 
-    @Column(name = "role_id")
-    private RoleEntity roleEntity;
+    @ManyToOne
+    @JoinColumn(name = "user_profilet_id")
+    private UserProfileEntity userProfile;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private RoleEntity role;
 
     public String getUsername() {
         return username;
@@ -46,11 +49,19 @@ public class UserEntity extends AuditableBase {
         this.active = active;
     }
 
-    public RoleEntity getRoleEntity() {
-        return roleEntity;
+    public UserProfileEntity getUserProfile() {
+        return userProfile;
     }
 
-    public void setRoleEntity(RoleEntity roleEntity) {
-        this.roleEntity = roleEntity;
+    public void setUserProfile(UserProfileEntity userProfile) {
+        this.userProfile = userProfile;
+    }
+
+    public RoleEntity getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEntity role) {
+        this.role = role;
     }
 }
