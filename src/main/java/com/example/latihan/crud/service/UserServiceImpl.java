@@ -36,6 +36,12 @@ public class UserServiceImpl implements UserService{
         UserEntity userEntity = new UserEntity();
         UserProfileEntity userProfileEntity = new UserProfileEntity();
         Optional<RoleEntity> roleEntity = roleRepositories.findById(userWrapper.getRoleId());
+        if(userWrapper.getId() != null) {
+            Optional<UserEntity> userEntityOptional = userRepositories.findById(userWrapper.getId());
+            Optional<UserProfileEntity> userProfileEntityOptional = userProfileRepositories.findById(userEntityOptional.get().getUserProfile().getId());
+            userEntity = userEntityOptional.get();
+            userProfileEntity = userProfileEntityOptional.get();
+        }
         userProfileEntity.setFullName(userWrapper.getFullName());
         userProfileEntity.setEmail(userWrapper.getEmail());
         userProfileRepositories.save(userProfileEntity);

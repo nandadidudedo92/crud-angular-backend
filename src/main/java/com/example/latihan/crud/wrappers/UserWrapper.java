@@ -1,11 +1,20 @@
 package com.example.latihan.crud.wrappers;
 
 public class UserWrapper {
+    private Long id;
     private String username;
     private String password;
     private String fullName;
     private String email;
     private Long roleId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

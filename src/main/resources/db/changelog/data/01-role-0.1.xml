@@ -7,11 +7,16 @@
 
 
     <changeSet author="m@P" id="insert-role-0.1">
-        <loadUpdateData encoding="UTF-8"
-                        file="db/changelog/data/csv/01-role.0.1.csv"
-                        primaryKey="id" quotchar='"' separator=","
+        <loadData encoding="UTF-8"
+                        file="db/changelog/data/csv/01-role.0.1.csv" quotchar='"' separator=","
                         tableName="sys_role">
-        </loadUpdateData>
+        </loadData>
+    </changeSet>
+
+    <changeSet author="M@p"
+               id="update-role-seq-0.1">
+        <sql dbms="mysql" endDelimiter=";">ALTER TABLE sys_role AUTO_INCREMENT = 2;
+        </sql>
     </changeSet>
 
 </databaseChangeLog>
