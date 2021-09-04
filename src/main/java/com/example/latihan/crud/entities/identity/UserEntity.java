@@ -18,7 +18,7 @@ public class UserEntity extends AuditableBase {
     private boolean active;
 
     @ManyToOne
-    @JoinColumn(name = "user_profilet_id")
+    @JoinColumn(name = "user_profile_id")
     private UserProfileEntity userProfile;
 
     @ManyToOne
