@@ -1,7 +1,7 @@
-package com.example.latihan.crud.service;
+package com.example.latihan.crud.service.master;
 
 import com.example.latihan.crud.entities.master.ProductEntity;
-import com.example.latihan.crud.repositories.ProductRepositories;
+import com.example.latihan.crud.repositories.master.ProductRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

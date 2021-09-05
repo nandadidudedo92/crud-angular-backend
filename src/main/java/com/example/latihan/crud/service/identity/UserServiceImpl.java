@@ -1,15 +1,12 @@
-package com.example.latihan.crud.service;
+package com.example.latihan.crud.service.identity;
 
 import com.example.latihan.crud.entities.identity.RoleEntity;
 import com.example.latihan.crud.entities.identity.UserEntity;
 import com.example.latihan.crud.entities.identity.UserProfileEntity;
-import com.example.latihan.crud.entities.master.ProductEntity;
-import com.example.latihan.crud.repositories.ProductRepositories;
-import com.example.latihan.crud.repositories.RoleRepositories;
-import com.example.latihan.crud.repositories.UserProfileRepositories;
-import com.example.latihan.crud.repositories.UserRepositories;
+import com.example.latihan.crud.repositories.identity.RoleRepositories;
+import com.example.latihan.crud.repositories.identity.UserProfileRepositories;
+import com.example.latihan.crud.repositories.identity.UserRepositories;
 import com.example.latihan.crud.wrappers.UserWrapper;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

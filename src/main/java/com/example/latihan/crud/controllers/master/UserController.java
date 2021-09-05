@@ -1,8 +1,7 @@
-package com.example.latihan.crud.controllers;
+package com.example.latihan.crud.controllers.master;
 
 import com.example.latihan.crud.entities.identity.UserEntity;
-import com.example.latihan.crud.service.UserService;
-import com.example.latihan.crud.service.UserService;
+import com.example.latihan.crud.service.identity.UserService;
 import com.example.latihan.crud.util.response.CommonResponse;
 import com.example.latihan.crud.util.response.CommonResponseGenerator;
 import com.example.latihan.crud.wrappers.UserWrapper;

@@ -51,4 +51,14 @@ public class ProductEntity extends AuditableBase {
     public void setHarga(int harga) {
         this.harga = harga;
     }
+
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "kodeBarang='" + kodeBarang + '\'' +
+                ", namaBarang='" + namaBarang + '\'' +
+                ", jumlah=" + jumlah +
+                ", harga=" + harga +
+                '}';
+    }
 }

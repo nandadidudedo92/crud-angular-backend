@@ -1,4 +1,4 @@
-package com.example.latihan.crud.repositories;
+package com.example.latihan.crud.repositories.identity;
 
 import com.example.latihan.crud.entities.identity.RoleEntity;
 import com.example.latihan.crud.entities.identity.UserProfileEntity;

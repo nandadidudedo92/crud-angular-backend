@@ -1,4 +1,4 @@
-package com.example.latihan.crud.service;
+package com.example.latihan.crud.service.identity;
 
 import com.example.latihan.crud.entities.identity.UserEntity;
 import com.example.latihan.crud.entities.master.ProductEntity;

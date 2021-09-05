@@ -1,4 +1,4 @@
-package com.example.latihan.crud.service;
+package com.example.latihan.crud.service.master;
 
 import com.example.latihan.crud.entities.master.ProductEntity;
 import org.springframework.stereotype.Service;

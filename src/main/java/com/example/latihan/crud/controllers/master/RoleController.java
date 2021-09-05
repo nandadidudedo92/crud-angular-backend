@@ -1,7 +1,7 @@
-package com.example.latihan.crud.controllers;
+package com.example.latihan.crud.controllers.master;
 
 import com.example.latihan.crud.entities.identity.RoleEntity;
-import com.example.latihan.crud.service.RoleService;
+import com.example.latihan.crud.service.identity.RoleService;
 import com.example.latihan.crud.util.response.CommonResponse;
 import com.example.latihan.crud.util.response.CommonResponseGenerator;
 import org.slf4j.Logger;

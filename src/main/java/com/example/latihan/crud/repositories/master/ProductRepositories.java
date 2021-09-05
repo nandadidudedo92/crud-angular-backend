@@ -1,10 +1,9 @@
-package com.example.latihan.crud.repositories;
+package com.example.latihan.crud.repositories.master;
 
-import com.example.latihan.crud.entities.identity.UserEntity;
 import com.example.latihan.crud.entities.master.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepositories extends JpaRepository<UserEntity, Long> {
+public interface ProductRepositories extends JpaRepository<ProductEntity, Long> {
 }
