@@ -1,4 +1,4 @@
-package com.example.latihan.crud.controllers.master;
+package com.example.latihan.crud.controllers.identity;
 
 import com.example.latihan.crud.entities.identity.RoleEntity;
 import com.example.latihan.crud.service.identity.RoleService;
