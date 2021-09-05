@@ -11,4 +11,5 @@ public interface TransactionService {
 
     TransactionDetailWrapper addNewTransaction(List<TransactionWrapper> transactionWrapper) throws Exception;
 
+    List<TransactionWrapper> getTopOnehundred();
 }

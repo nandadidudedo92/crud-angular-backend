@@ -47,12 +47,34 @@ public class TransactionServiceImpl implements TransactionService{
         transactionDetailEntityList.listIterator().forEachRemaining(transactionDetailEntity -> transactionDetailEntity.setTransactionEntity(transactionEntity));
         transactionDetailEntityList.listIterator().forEachRemaining(transactionDetailEntity -> transactionDetailEntity.setTransactionCode(transactionCode));
 
-
         transactionDetailRepository.saveAll(transactionDetailEntityList);
 
         System.out.println(total);
 
         return null;
+    }
+
+    @Override
+    public List<TransactionWrapper> getTopOnehundred() {
+
+        List<TransactionWrapper> transactionWrapperList = new ArrayList<>();
+        List<TransactionDetailEntity> transactionDetailEntityList = transactionDetailRepository.findTop10ByOrderByNamaBarangAsc();
+        for (TransactionDetailEntity transactionDetailEntity: transactionDetailEntityList) {
+            transactionWrapperList.add(toWrapper(transactionDetailEntity));
+        }
+
+        return transactionWrapperList;
+    }
+
+    private TransactionWrapper toWrapper(TransactionDetailEntity transactionDetailEntity) {
+        TransactionWrapper transactionWrapper = new TransactionWrapper();
+        transactionWrapper.setTransactionCode(transactionDetailEntity.getTransactionCode());
+        transactionWrapper.setKodeBarang(transactionDetailEntity.getKodeBarang());
+        transactionWrapper.setQty(transactionDetailEntity.getQty());
+        transactionWrapper.setSubTotal(transactionDetailEntity.getSubTotal());
+        transactionWrapper.setNamaBarang(transactionDetailEntity.getNamaBarang());
+        return transactionWrapper;
+
     }
 
 

@@ -7,6 +7,7 @@ public class TransactionWrapper extends AuditableBaseWrapper {
     private String namaBarang;
     private int qty;
     private int subTotal;
+    private String transactionCode;
 
     public int getKodeBarang() {
         return kodeBarang;
@@ -38,5 +39,13 @@ public class TransactionWrapper extends AuditableBaseWrapper {
 
     public void setSubTotal(int subTotal) {
         this.subTotal = subTotal;
+    }
+
+    public String getTransactionCode() {
+        return transactionCode;
+    }
+
+    public void setTransactionCode(String transactionCode) {
+        this.transactionCode = transactionCode;
     }
 }

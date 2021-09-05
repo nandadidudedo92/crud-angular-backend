@@ -9,10 +9,7 @@ import com.example.latihan.crud.wrappers.TransactionWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +35,20 @@ public class TransactionController {
             logger.info(e.getMessage());
             return comGen.failedResponse("Transaction Failed");
         }
+    }
+
+    @GetMapping(value = "list")
+    CommonResponse<List<TransactionWrapper>> getTopTransactionDetail() {
+        try {
+
+            List<TransactionWrapper> transactionWrapperList = transactionService.getTopOnehundred();
+            return comGen.successResponse(transactionWrapperList, "Success get top 100 transaction");
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            return comGen.failedResponse("Gagal Mengambil Data");
+
+        }
+
     }
 
 }
