@@ -27,10 +27,10 @@ public class TransactionController {
     CommonResponseGenerator comGen;
 
     @PostMapping(value = "new")
-    CommonResponse<List<TransactionDetailWrappers>> newTransaction(@RequestBody AddTransactionWrapper transactionWrapper){
+    CommonResponse<TransactionWrapper> newTransaction(@RequestBody AddTransactionWrapper transactionWrapper){
         try {
             TransactionWrapper transactionDetailWrapper = transactionService.addNewTransaction(transactionWrapper);
-            return comGen.successResponse(transactionWrapper.getTransactionWrapperList(), "Transaction Success");
+            return comGen.successResponse(transactionDetailWrapper, "Transaction Success");
         } catch (Exception e) {
             e.printStackTrace();
             logger.info(e.getMessage());

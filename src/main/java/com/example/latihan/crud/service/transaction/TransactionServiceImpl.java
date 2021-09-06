@@ -50,14 +50,22 @@ public class TransactionServiceImpl implements TransactionService{
             TransactionDetailEntity transactionDetailEntity = toTransactionDetailEntity(trans);
             transactionDetailEntityList.add(transactionDetailEntity);
         }
-
         transactionEntity.setTotalTransaction(total);
         transactionRepository.save(transactionEntity);
         transactionDetailEntityList.listIterator().forEachRemaining(transactionDetailEntity -> transactionDetailEntity.setTransactionEntity(transactionEntity));
         transactionDetailEntityList.listIterator().forEachRemaining(transactionDetailEntity -> transactionDetailEntity.setTransactionCode(transactionCode));
         transactionDetailRepository.saveAll(transactionDetailEntityList);
         reduceStock(transactionDetailEntityList);
-        return null;
+        return generateWrapper(total, transactionWrapper.getTransactionWrapperList(), transactionCode);
+    }
+
+    private TransactionWrapper generateWrapper(int total, List<TransactionDetailWrappers> transactionDetailWrappersList, String transactionCode) {
+        TransactionWrapper transactionWrapper = new TransactionWrapper();
+        transactionWrapper.setTotal(total);
+        transactionWrapper.setTransactionWrapperList(transactionDetailWrappersList);
+        transactionWrapper.setTransactionCode(transactionCode);
+
+        return  transactionWrapper;
     }
 
 
