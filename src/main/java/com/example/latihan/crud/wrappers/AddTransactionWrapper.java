@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AddTransactionWrapper  extends AuditableBaseWrapper {
     private String customerName;
-    private List<TransactionWrapper> transactionWrapperList;
+    private List<TransactionDetailWrappers> transactionDetailWrappersList;
 
     public String getCustomerName() {
         return customerName;
@@ -16,11 +16,11 @@ public class AddTransactionWrapper  extends AuditableBaseWrapper {
         this.customerName = customerName;
     }
 
-    public List<TransactionWrapper> getTransactionWrapperList() {
-        return transactionWrapperList;
+    public List<TransactionDetailWrappers> getTransactionWrapperList() {
+        return transactionDetailWrappersList;
     }
 
-    public void setTransactionWrapperList(List<TransactionWrapper> transactionWrapperList) {
-        this.transactionWrapperList = transactionWrapperList;
+    public void setTransactionWrapperList(List<TransactionDetailWrappers> transactionDetailWrappersList) {
+        this.transactionDetailWrappersList = transactionDetailWrappersList;
     }
 }

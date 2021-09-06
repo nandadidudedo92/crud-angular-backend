@@ -2,44 +2,14 @@ package com.example.latihan.crud.wrappers;
 
 import com.example.latihan.crud.util.wrapper.AuditableBaseWrapper;
 
+import java.util.List;
+
 public class TransactionWrapper extends AuditableBaseWrapper {
-    private int kodeBarang;
-    private String namaBarang;
-    private int qty;
-    private int subTotal;
+
+
     private String transactionCode;
-
-    public int getKodeBarang() {
-        return kodeBarang;
-    }
-
-    public void setKodeBarang(int kodeBarang) {
-        this.kodeBarang = kodeBarang;
-    }
-
-    public String getNamaBarang() {
-        return namaBarang;
-    }
-
-    public void setNamaBarang(String namaBarang) {
-        this.namaBarang = namaBarang;
-    }
-
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
-    public int getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(int subTotal) {
-        this.subTotal = subTotal;
-    }
+    private int total;
+    private List<TransactionDetailWrappers> transactionDetailWrappersList;
 
     public String getTransactionCode() {
         return transactionCode;
@@ -47,5 +17,21 @@ public class TransactionWrapper extends AuditableBaseWrapper {
 
     public void setTransactionCode(String transactionCode) {
         this.transactionCode = transactionCode;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public List<TransactionDetailWrappers> getTransactionWrapperList() {
+        return transactionDetailWrappersList;
+    }
+
+    public void setTransactionWrapperList(List<TransactionDetailWrappers> transactionDetailWrappersList) {
+        this.transactionDetailWrappersList = transactionDetailWrappersList;
     }
 }
