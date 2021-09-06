@@ -1,7 +1,9 @@
 package com.example.latihan.crud.service.transaction;
 
+import com.example.latihan.crud.entities.master.ProductEntity;
 import com.example.latihan.crud.entities.transaction.TransactionDetailEntity;
 import com.example.latihan.crud.entities.transaction.TransactionEntity;
+import com.example.latihan.crud.repositories.master.ProductRepositories;
 import com.example.latihan.crud.repositories.transaction.TransactionDetailRepository;
 import com.example.latihan.crud.repositories.transaction.TransactionRepository;
 import com.example.latihan.crud.service.master.CustomerService;
@@ -24,6 +26,9 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Autowired
     TransactionRepository transactionRepository;
+
+    @Autowired
+    ProductRepositories productRepositories;
 
     @Autowired
     CustomerService customerService;
@@ -50,10 +55,26 @@ public class TransactionServiceImpl implements TransactionService{
         transactionRepository.save(transactionEntity);
         transactionDetailEntityList.listIterator().forEachRemaining(transactionDetailEntity -> transactionDetailEntity.setTransactionEntity(transactionEntity));
         transactionDetailEntityList.listIterator().forEachRemaining(transactionDetailEntity -> transactionDetailEntity.setTransactionCode(transactionCode));
-
         transactionDetailRepository.saveAll(transactionDetailEntityList);
-
+        reduceStock(transactionDetailEntityList);
         return null;
+    }
+
+
+    @Transactional
+    public void reduceStock(List<TransactionDetailEntity> transactionDetailEntityList) {
+
+        for (TransactionDetailEntity transactionDetailEntity:
+        transactionDetailEntityList) {
+
+            ProductEntity productEntity = productRepositories.findByKodeBarang(Integer.toString(transactionDetailEntity.getKodeBarang()));
+
+            productEntity.setJumlah(productEntity.getJumlah()-transactionDetailEntity.getQty());
+
+            productRepositories.save(productEntity);
+
+        }
+
     }
 
     @Override

@@ -13,13 +13,7 @@ public class CommonUtil {
         int year  = localDate.getYear();
         int month = localDate.getMonthValue();
 
-        System.out.println("year "+year);
-        System.out.println("year "+month);
-        System.out.println("yearMonth : "+validateMonthandYear(month, year));
-        System.out.println("count "+checkSequence(count));
-
     String newOne = "IV"+validateMonthandYear(month, year)+checkSequence(count);
-        System.out.println("newOne "+newOne);
         return newOne;
     }
 
