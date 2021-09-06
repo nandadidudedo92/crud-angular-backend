@@ -33,7 +33,7 @@ public class TransactionServiceImpl implements TransactionService{
     public TransactionWrapper addNewTransaction(AddTransactionWrapper transactionWrapper) throws Exception {
 
         int total = 0;
-        String transactionCode = CommonUtil.generateTransactionCode();
+        String transactionCode = CommonUtil.generateTransactionCode(transactionRepository.count());
 
         TransactionEntity transactionEntity = new TransactionEntity();
         transactionEntity.setTransationCode(transactionCode);

@@ -29,7 +29,6 @@ public class TransactionController {
     @PostMapping(value = "new")
     CommonResponse<List<TransactionDetailWrappers>> newTransaction(@RequestBody AddTransactionWrapper transactionWrapper){
         try {
-            logger.info("customerName : "+ transactionWrapper.getCustomerName());
             TransactionWrapper transactionDetailWrapper = transactionService.addNewTransaction(transactionWrapper);
             return comGen.successResponse(transactionWrapper.getTransactionWrapperList(), "Transaction Success");
         } catch (Exception e) {
