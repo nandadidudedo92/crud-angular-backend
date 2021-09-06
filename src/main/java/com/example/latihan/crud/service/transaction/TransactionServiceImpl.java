@@ -49,8 +49,6 @@ public class TransactionServiceImpl implements TransactionService{
 
         transactionDetailRepository.saveAll(transactionDetailEntityList);
 
-        System.out.println(total);
-
         return null;
     }
 

@@ -12,6 +12,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,7 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import javax.sql.DataSource;
 
 @SpringBootApplication
-@EnableJpaAuditing
+@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class CrudApplication {
 
 
@@ -77,6 +78,11 @@ public class CrudApplication {
 					.antMatchers(HttpMethod.GET,"/h2-console").permitAll()
 					.anyRequest().authenticated();
 		}
+	}
+
+	@Bean
+	public AuditorAware<String> auditorAware(){
+		return new CustomAuditAware();
 	}
 
 

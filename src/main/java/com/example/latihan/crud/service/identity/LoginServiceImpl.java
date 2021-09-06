@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService{
 
     @Override
     public UserEntity doLogin(UserEntity user) throws Exception {
-        System.out.println(user.getUsername() + " "+user.getPassword());
+
         UserEntity userEntity = userRepositories.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (userEntity.getUsername() == null) {
             throw new Exception("Login Gagal, user tidak ditemukan");
