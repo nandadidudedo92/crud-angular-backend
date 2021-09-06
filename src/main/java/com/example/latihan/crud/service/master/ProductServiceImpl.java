@@ -16,6 +16,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductEntity addProduct(ProductEntity productEntity) {
+        productEntity.setDeleted(false);
         return productRepositories.save(productEntity) ;
     }
 
@@ -25,9 +26,23 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<ProductEntity> getAllProductStatusFalse() throws Exception {
+
+        return productRepositories.findAllByDeletedFalse();
+    }
+
+    @Override
     public ProductEntity getById(Long id) throws Exception {
         Optional<ProductEntity> productEntityOptional = productRepositories.findById(id);
         return productEntityOptional.get();
+    }
+
+    @Override
+    public boolean deleteProduct(Long id) throws Exception {
+        ProductEntity productEntity = productRepositories.findById(id).get();
+        productEntity.setDeleted(true);
+        productRepositories.save(productEntity);
+        return true;
     }
 
 }

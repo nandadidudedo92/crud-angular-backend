@@ -4,6 +4,7 @@ import com.example.latihan.crud.controllers.master.ProductController;
 import com.example.latihan.crud.service.transaction.TransactionService;
 import com.example.latihan.crud.util.response.CommonResponse;
 import com.example.latihan.crud.util.response.CommonResponseGenerator;
+import com.example.latihan.crud.wrappers.AddTransactionWrapper;
 import com.example.latihan.crud.wrappers.TransactionDetailWrapper;
 import com.example.latihan.crud.wrappers.TransactionWrapper;
 import org.slf4j.Logger;
@@ -27,11 +28,13 @@ public class TransactionController {
     CommonResponseGenerator comGen;
 
     @PostMapping(value = "new")
-    CommonResponse<List<TransactionWrapper>> newTransaction(@RequestBody List<TransactionWrapper> transactionWrapperList){
+    CommonResponse<List<TransactionWrapper>> newTransaction(@RequestBody AddTransactionWrapper transactionWrapper){
         try {
-            TransactionDetailWrapper transactionDetailWrapper = transactionService.addNewTransaction(transactionWrapperList);
-            return comGen.successResponse(transactionWrapperList, "Transaction Success");
+            logger.info("customerName : "+ transactionWrapper.getCustomerName());
+            TransactionDetailWrapper transactionDetailWrapper = transactionService.addNewTransaction(transactionWrapper);
+            return comGen.successResponse(transactionWrapper.getTransactionWrapperList(), "Transaction Success");
         } catch (Exception e) {
+            e.printStackTrace();
             logger.info(e.getMessage());
             return comGen.failedResponse("Transaction Failed");
         }

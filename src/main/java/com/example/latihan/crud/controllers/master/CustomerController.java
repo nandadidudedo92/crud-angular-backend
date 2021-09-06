@@ -1,7 +1,8 @@
 package com.example.latihan.crud.controllers.master;
 
+import com.example.latihan.crud.entities.master.CustomerEntity;
 import com.example.latihan.crud.entities.master.ProductEntity;
-import com.example.latihan.crud.service.master.ProductService;
+import com.example.latihan.crud.service.master.CustomerService;
 import com.example.latihan.crud.util.response.CommonResponse;
 import com.example.latihan.crud.util.response.CommonResponseGenerator;
 import org.slf4j.Logger;
@@ -12,37 +13,37 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "product")
-public class ProductController {
+@RequestMapping(value = "customer")
+public class CustomerController {
 
-    Logger logger = LoggerFactory.getLogger(ProductController.class);
+    Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
     @Autowired
-    ProductService productService;
+    CustomerService customerService;
 
     @Autowired
     CommonResponseGenerator comgen;
 
     @PostMapping(value = "add")
-    CommonResponse<ProductEntity> addProduct(@RequestBody ProductEntity productEntity) throws Exception{
+    CommonResponse<CustomerEntity> addCustomer(@RequestBody CustomerEntity customerEntity) throws Exception{
 
         try {
-            ProductEntity product = productService.addProduct(productEntity);
-            return comgen.successResponse(product, "Success Add Product");
+            CustomerEntity customer = customerService.addCustomer(customerEntity);
+            return comgen.successResponse(customer, "Success Add Customer");
 
         } catch ( Exception e) {
             logger.error(e.getMessage());
-            return  comgen.failedResponse("Cek Apakah kode barang ada yang sama");
+            return  comgen.failedResponse(e.getMessage());
         }
 
     }
 
     @GetMapping(value = "list")
-    CommonResponse<List<ProductEntity>> getAllProduct() {
+    CommonResponse<List<CustomerEntity>> getAllCustomer() {
 
         try {
-            List<ProductEntity> productEntityList = productService.getAllProduct();
-            return comgen.successResponse(productEntityList, "Success get All Product");
+            List<CustomerEntity> customerEntityList = customerService.getAllCustomer();
+            return comgen.successResponse(customerEntityList, "Success get All Customer");
 
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -52,11 +53,11 @@ public class ProductController {
     }
 
     @GetMapping(value = "list-param")
-    CommonResponse<List<ProductEntity>> getAllProductParam() {
+    CommonResponse<List<CustomerEntity>> getAllProductParam() {
 
         try {
-            List<ProductEntity> productEntityList = productService.getAllProductStatusFalse();
-            return comgen.successResponse(productEntityList, "Success get All Product");
+            List<CustomerEntity> customerEntityList = customerService.getAllProductStatusFalse();
+            return comgen.successResponse(customerEntityList, "Success get All Customer");
 
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -66,10 +67,10 @@ public class ProductController {
     }
 
     @GetMapping(value = "id")
-    CommonResponse<ProductEntity> getProductById(@RequestParam Long id) {
+    CommonResponse<CustomerEntity> getCustomerById(@RequestParam Long id) {
         try {
-            ProductEntity productEntityList = productService.getById(id);
-            return comgen.successResponse(productEntityList, "Success get Product By Id "+id);
+            CustomerEntity customerEntityList = customerService.getById(id);
+            return comgen.successResponse(customerEntityList, "Success get Customer By Id "+id);
 
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -78,9 +79,9 @@ public class ProductController {
     }
 
     @GetMapping(value = "delete")
-    CommonResponse<Boolean> deleteProduct(@RequestParam Long id) {
+    CommonResponse<Boolean> deleteCustomer(@RequestParam Long id) {
         try {
-            boolean isDelete = productService.deleteProduct(id);
+            boolean isDelete = customerService.deleteCustomer(id);
             return comgen.successResponse(isDelete, "Success Delete Data");
 
         } catch (Exception e) {
@@ -88,6 +89,5 @@ public class ProductController {
             return comgen.failedResponse("Failed Delete Data");
         }
     }
-
 
 }

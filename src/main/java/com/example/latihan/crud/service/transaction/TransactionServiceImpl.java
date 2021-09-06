@@ -1,10 +1,13 @@
 package com.example.latihan.crud.service.transaction;
 
+import com.example.latihan.crud.entities.master.CustomerEntity;
 import com.example.latihan.crud.entities.transaction.TransactionDetailEntity;
 import com.example.latihan.crud.entities.transaction.TransactionEntity;
 import com.example.latihan.crud.repositories.transaction.TransactionDetailRepository;
 import com.example.latihan.crud.repositories.transaction.TransactionRepository;
+import com.example.latihan.crud.service.master.CustomerService;
 import com.example.latihan.crud.util.CommonUtil;
+import com.example.latihan.crud.wrappers.AddTransactionWrapper;
 import com.example.latihan.crud.wrappers.TransactionDetailWrapper;
 import com.example.latihan.crud.wrappers.TransactionWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +28,22 @@ public class TransactionServiceImpl implements TransactionService{
     @Autowired
     TransactionRepository transactionRepository;
 
+    @Autowired
+    CustomerService customerService;
+
     @Transactional
     @Override
-    public TransactionDetailWrapper addNewTransaction(List<TransactionWrapper> transactionWrapper) throws Exception {
+    public TransactionDetailWrapper addNewTransaction(AddTransactionWrapper transactionWrapper) throws Exception {
 
         int total = 0;
         String transactionCode = CommonUtil.generateTransactionCode();
 
         TransactionEntity transactionEntity = new TransactionEntity();
         transactionEntity.setTransationCode(transactionCode);
+        transactionEntity.setCustomerEntity(customerService.findByName(transactionWrapper.getCustomerName()));
 
         List<TransactionDetailEntity> transactionDetailEntityList = new ArrayList<>();
-        for (TransactionWrapper trans : transactionWrapper) {
+        for (TransactionWrapper trans : transactionWrapper.getTransactionWrapperList()) {
             total = total + trans.getSubTotal();
             TransactionDetailEntity transactionDetailEntity = toTransactionDetailEntity(trans);
             transactionDetailEntityList.add(transactionDetailEntity);

@@ -10,6 +10,8 @@ public interface ProductService {
 
     ProductEntity addProduct(ProductEntity productEntity) throws Exception;
     List<ProductEntity> getAllProduct() throws Exception;
+    List<ProductEntity> getAllProductStatusFalse() throws Exception;
     ProductEntity getById(Long id) throws Exception;
+    boolean deleteProduct(Long id) throws Exception;
 
 }
