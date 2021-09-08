@@ -75,7 +75,7 @@ public class TransactionServiceImpl implements TransactionService{
         for (TransactionDetailEntity transactionDetailEntity:
         transactionDetailEntityList) {
 
-            ProductEntity productEntity = productRepositories.findByKodeBarang(Integer.toString(transactionDetailEntity.getKodeBarang()));
+            ProductEntity productEntity = productRepositories.findByKodeBarang(transactionDetailEntity.getKodeBarang());
 
             productEntity.setJumlah(productEntity.getJumlah()-transactionDetailEntity.getQty());
 
