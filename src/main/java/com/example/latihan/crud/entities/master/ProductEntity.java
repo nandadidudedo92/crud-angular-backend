@@ -8,23 +8,23 @@ import javax.persistence.*;
 @Table(name = "product")
 public class ProductEntity extends AuditableBase {
 
-    @Column(name = "kode_barang", length = 50,  unique=true)
-    private String kodeBarang;
+    @Column(name = "kode_barang", unique=true, nullable = false)
+    private int kodeBarang;
 
-    @Column(name = "nama_barang", length = 50)
+    @Column(name = "nama_barang", length = 50, nullable = false)
     private String namaBarang;
 
-    @Column(name = "jumlah")
+    @Column(name = "jumlah", nullable = false)
     private int jumlah;
 
     @Column(name = "harga", nullable = false)
     private int harga;
 
-    public String getKodeBarang() {
+    public int getKodeBarang() {
         return kodeBarang;
     }
 
-    public void setKodeBarang(String kodeBarang) {
+    public void setKodeBarang(int kodeBarang) {
         this.kodeBarang = kodeBarang;
     }
 

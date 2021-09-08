@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepositories extends JpaRepository<ProductEntity, Long> {
-    List<ProductEntity> findAllByDeletedFalse();
+    List<ProductEntity> findAllByDeletedFalseOrderByKodeBarangAsc();
 
     ProductEntity findByKodeBarang(String kodeBarang);
 }

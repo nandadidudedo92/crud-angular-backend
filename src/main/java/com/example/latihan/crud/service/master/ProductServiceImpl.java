@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<ProductEntity> getAllProductStatusFalse() throws Exception {
 
-        return productRepositories.findAllByDeletedFalse();
+        return productRepositories.findAllByDeletedFalseOrderByKodeBarangAsc();
     }
 
     @Override
