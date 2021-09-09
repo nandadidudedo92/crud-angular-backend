@@ -18,7 +18,7 @@ public class ReportServiceImpl implements ReportService{
 
     @Override
     public List<ReportStockOutWrapper> getOutStockReport(int startCode, int endCode, Date startDate, Date endDate) throws Exception {
-        List<ReportStockOutWrapper> reportStockOutWrapperList = transactionDetailRepository.getStockOutReport(startCode,endCode);
+        List<ReportStockOutWrapper> reportStockOutWrapperList = transactionDetailRepository.getStockOutReport(startCode,endCode, startDate, endDate);
         List<ReportStockOutWrapper> reportStockOutWrappers = new ArrayList<>();
         for (ReportStockOutWrapper reportStockOutWrapper: reportStockOutWrapperList) {
             ReportStockOutWrapper reportStockOutWrapper1 = toWrapper(reportStockOutWrapper);

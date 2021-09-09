@@ -21,8 +21,8 @@ public interface TransactionDetailRepository extends JpaRepository<TransactionDe
 //                                          @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
     @Query("SELECT NEW com.example.latihan.crud.util.wrapper.ReportStockOutWrapper(s.kodeBarang, s.namaBarang, sum(s.qty), p) FROM TransactionDetailEntity s " +
-            " inner join ProductEntity p on s.kodeBarang = p.kodeBarang where s.kodeBarang between :startCode and :endCode " +
-            " group by s.kodeBarang, s.namaBarang")
-    List<ReportStockOutWrapper> getStockOutReport(@Param("startCode") int startCode, @Param("endCode") int endCode);
+            " inner join ProductEntity p on s.kodeBarang = p.kodeBarang where (s.kodeBarang between :startCode and :endCode) " +
+            " and (s.createdDate between :startDate and :endDate) group by s.kodeBarang, s.namaBarang")
+    List<ReportStockOutWrapper> getStockOutReport(@Param("startCode") int startCode, @Param("endCode") int endCode, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 }
