@@ -26,6 +26,8 @@ import javax.sql.DataSource;
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class CrudApplication {
 
+	@Value("${migration.should.run}")
+	private boolean migrationRun;
 
 	@Autowired
 	private DataSource dataSource;
@@ -45,7 +47,7 @@ public class CrudApplication {
 		liquibase.setDataSource(getDataSource(liquibaseProperties));
 		liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
 		liquibase.setDropFirst(liquibaseProperties.isDropFirst());
-		liquibase.setShouldRun(true);
+		liquibase.setShouldRun(migrationRun);
 		liquibase.setLabels(liquibaseProperties.getLabels());
 		liquibase.setChangeLogParameters(liquibaseProperties.getParameters());
 		return liquibase;
